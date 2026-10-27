@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Counter</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+        background: #f4f6f8;
+        color: #20242a;
+        font-family: system-ui, sans-serif;
+      }
+
+      main {
+        width: min(100% - 2rem, 22rem);
+        padding: 2rem;
+        border-radius: 1rem;
+        background: white;
+        box-shadow: 0 0.5rem 2rem #17203312;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      output {
+        display: block;
+        margin-bottom: 1.5rem;
+        font-size: 4rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      button {
+        min-width: 3.5rem;
+        min-height: 3rem;
+        padding: 0.5rem 1rem;
+        border: 0;
+        border-radius: 0.6rem;
+        background: #2563eb;
+        color: white;
+        font: inherit;
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      button:focus-visible {
+        outline: 3px solid #93c5fd;
+        outline-offset: 3px;
+      }
+
+      button.reset {
+        background: #e9edf2;
+        color: #20242a;
+        font-size: 1rem;
+      }
+
+      button.reset:hover {
+        background: #dce2e9;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Simple Counter</h1>
+      <output id="count" aria-live="polite">0</output>
+      <div class="buttons">
+        <button type="button" id="decrement" aria-label="Decrease count">−</button>
+        <button type="button" class="reset" id="reset">Reset</button>
+        <button type="button" id="increment" aria-label="Increase count">+</button>
+      </div>
+    </main>
+    <script>
+      const countDisplay = document.querySelector("#count");
+      let count = 0;
+
+      function updateCount(change) {
+        count += change;
+        countDisplay.textContent = count;
+      }
+
+      document.querySelector("#decrement").addEventListener("click", () => updateCount(-1));
+      document.querySelector("#increment").addEventListener("click", () => updateCount(1));
+      document.querySelector("#reset").addEventListener("click", () => {
+        count = 0;
+        countDisplay.textContent = count;
+      });
+    </script>
+  </body>
+</html>
